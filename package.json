@@ -2,14 +2,16 @@
   "name": "cms-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "node src/server.js",
-    "precommit": "lint-staged"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "precommit": "npm test"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn precommit"
+      "pre-commit": "npm test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "keywords": [],
