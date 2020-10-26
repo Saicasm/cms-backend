@@ -9,6 +9,7 @@ Token.init(
     tokenNo: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      unique: true,
     },
   },
   {

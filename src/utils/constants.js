@@ -31,6 +31,16 @@ const constants = {
     USERS_HISTORIES_RETRIEVED: 'User histories retrieved',
     USER_HISTORY_FOUND: 'User histories found',
   },
+  tokenTypes: {
+    TOKEN_UPDATED: 'token updated',
+    NO_TOKEN_FOUND: 'No token found',
+    TOKEN_ADDED: 'token added',
+    TOKEN_DELETED: 'token deleted',
+    TOKEN_FOUND_WITH_ID: 'token found with id :',
+    TOKEN_NOT_FOUND_WITH_ID: 'token not found with id : ',
+    TOKENS_RETRIEVED: 'tokens retrieved',
+    TOKEN_FOUND: 'token found',
+  },
   dbConnectionTypes: {
     CONNECTION_SUCCESS: 'Connection has been established successfully',
     CONNECTION_FAILURE: 'An error has occurred in establishing connection',
