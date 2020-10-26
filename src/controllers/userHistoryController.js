@@ -9,14 +9,18 @@ class UserHistoryController {
   static async getAllUserHistories(req, res) {
     const {limit, offset} = req.query;
     try {
-      const allUsers = await UserHistoryService.getAllUserHistories(
+      const allUserHistories = await UserHistoryService.getAllUserHistories(
         limit,
         offset,
       );
-      if (allUsers.length > 0) {
-        util.setSuccess(200, constants.userTypes.USERS_RETRIEVED, allUsers);
+      if (allUserHistories.length > 0) {
+        util.setSuccess(
+          200,
+          constants.userHistoryTypes.USERS_HISTORIES_RETRIEVED,
+          allUserHistories,
+        );
       } else {
-        util.setSuccess(200, constants.userTypes.NO_USERS);
+        util.setSuccess(200, constants.userHistoryTypes.NO_USER_HISTORIES);
       }
       return util.send(res);
     } catch (error) {
@@ -89,9 +93,16 @@ class UserHistoryController {
     try {
       const userHistory = await UserHistoryService.getUserHistory(id);
       if (!userHistory) {
-        util.setError(404, constants.userTypes.USER_NOT_FOUND_WITH_ID + id);
+        util.setError(
+          404,
+          constants.userHistoryTypes.USER_HISTORY_NOT_FOUND_WITH_ID + id,
+        );
       } else {
-        util.setSuccess(200, constants.userTypes.USER_FOUND, userHistory);
+        util.setSuccess(
+          200,
+          constants.userHistoryTypes.USER_HISTORY_FOUND_WITH_ID,
+          userHistory,
+        );
       }
       return util.send(res);
     } catch (error) {
@@ -142,9 +153,16 @@ class UserHistoryController {
       const user = await UserHistoryService.getUserHistoryByUserId(userId);
 
       if (!user) {
-        util.setError(404, constants.userTypes.USER_NOT_FOUND_WITH_ID + userId);
+        util.setError(
+          404,
+          constants.userHistoryTypes.USER_HISTORY_FOR_USER_NOT_FOUND + userId,
+        );
       } else {
-        util.setSuccess(200, constants.userTypes.USER_FOUND, user);
+        util.setSuccess(
+          200,
+          constants.userHistoryTypes.USER_HISTORY_FOR_USER_FOUND,
+          user,
+        );
       }
       return util.send(res);
     } catch (error) {
