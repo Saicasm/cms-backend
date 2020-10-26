@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const logger = require('./utils/logger');
 const httpLogger = require('./utils/httpLogger');
 const UserRoutes = require('./routes/userRoutes');
+const userHistoryRoutes = require('./routes/userHistoryRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -21,3 +22,4 @@ app.listen(4002, () => {
 });
 // Users route
 app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1/user_history', userHistoryRoutes);
