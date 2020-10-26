@@ -3,10 +3,10 @@ const TokenController = require('../controllers/tokenController');
 
 const router = express.Router();
 
-router.get('/', TokenController.getAllUsers);
-router.post('/', TokenController.addUser);
-router.get('/:id', TokenController.getUser);
-router.put('/:id', TokenController.updateUser);
-router.delete('/:id', TokenController.deleteUser);
+router.get('/', TokenController.getAllTokens);
+router.post('/', TokenController.addToken);
+router.get('/:id', TokenController.getToken);
+router.put('/:id', TokenController.updateToken);
+router.delete('/:id', TokenController.deleteToken);
 
 module.exports = router;
