@@ -19,6 +19,18 @@ const constants = {
     USER_WITH_PHONE_NOT_FOUND: 'User not found with phoneNo :',
     USER_WITH_PHONE_FOUND: 'User found with phoneNo :',
   },
+  userHistoryTypes: {
+    USER_HISTORY_UPDATED: 'User updated',
+    NO_USERS: 'No users found',
+    USER_HISTORY_ADDED: 'User added',
+    USER_HISTORY_DELETED: 'User deleted',
+    USER_HISTORY_FOUND_WITH_ID: 'User found with id :',
+    USER_HISTORY_NOT_FOUND_WITH_ID: 'User not found with id : ',
+    USER_HISTORY_FOR_USER_FOUND: 'User history  found for userId :',
+    USER_HISTORY_FOR_USER_NOT_FOUND: 'User history not found for userId :',
+    USERS_RETRIEVED: 'Users retrieved',
+    USER_HISTORY_FOUND: 'User found',
+  },
   dbConnectionTypes: {
     CONNECTION_SUCCESS: 'Connection has been established successfully',
     CONNECTION_FAILURE: 'An error has occurred in establishing connection',
