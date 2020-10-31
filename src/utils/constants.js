@@ -67,9 +67,30 @@ const constants = {
     DB_DEV_HOST: 'localhost',
     DB_DEV_DATABASE: 'cms_dev',
   },
-  clientTypes: {
-    CLIENT_DOCTOR: 'Doctor',
-    CLIENT_RECEPTIONIST: 'Receptionist',
+  clientUserTypes: {
+    CLIENT_USER_DOCTOR: 'Doctor',
+    CLIENT_USER_RECEPTIONIST: 'Receptionist',
+    CLIENT_USER_UPDATED: 'ClientUser updated',
+    NO_CLIENT_USERS: 'No clientUser found',
+    CLIENT_USER_ADDED: 'ClientUser added',
+    CLIENT_USER_DELETED: 'ClientUser deleted',
+    CLIENT_USER_FOUND: 'ClientUser found',
+    CLIENT_USER_FOUND_WITH_ID: 'ClientUser found with id :',
+    CLIENT_USER_NOT_FOUND_WITH_ID: 'ClientUser not found with id : ',
+    CLIENT_USERS_RETRIEVED: 'ClientUsers retrieved',
+  },
+  statTypes: {
+    STAT_UPDATED: 'Stat updated',
+    NO_STATS: 'No Stat found',
+    STAT_ADDED: 'Stat added',
+    STAT_DELETED: 'Stat deleted',
+    STAT_FOUND: 'Stat found',
+    STAT_FOUND_WITH_ID: 'Stat found with id :',
+    STAT_NOT_FOUND_WITH_ID: 'Stat not found with id : ',
+    STATS_RETRIEVED: 'Stats retrieved',
+  },
+  apiTypes: {
+    BASE_URL: '/api/v1',
   },
 };
 

@@ -1,5 +1,5 @@
 const {DataTypes, Model} = require('sequelize');
-// const {clientTypes} = require('../../utils/constants');
+const constants = require('../../utils/constants');
 const sequelize = require('../config/config');
 
 class Client extends Model {}
@@ -16,16 +16,18 @@ Client.init(
       allowNull: false,
     },
     phoneNo: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     emailId: {
       type: DataTypes.STRING,
     },
-    // role: {
-    //   type: DataTypes.ENUM,
-    //   values: ['active', 'pending', 'deleted'],
-    // },
+    role: {
+      type: DataTypes.ENUM(
+        constants.clientUserTypes.CLIENT_USER_DOCTOR,
+        constants.clientUserTypes.CLIENT_USER_RECEPTIONIST,
+      ),
+    },
     address: {
       type: DataTypes.STRING,
       allowNull: false,

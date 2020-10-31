@@ -7,10 +7,13 @@ const userHistoryRoutes = require('./routes/userHistoryRoutes');
 const tokenRoutes = require('./routes/tokenRoutes');
 const diseaseRoutes = require('./routes/diseaseRoutes');
 const symptomRoutes = require('./routes/symptomRoutes');
+const clientUserRoutes = require('./routes/clientUserRoutes');
+const statsRoutes = require('./routes/statisticsRoutes');
+const constants = require('./utils/constants');
 require('dotenv').config();
 
 const app = express();
-
+const baseUrl = process.env.BASE_URL || constants.apiTypes.BASE_URL
 app.use(bodyParser.json());
 app.use(httpLogger);
 
@@ -18,12 +21,16 @@ app.listen(4002, () => {
   logger.info('Running on port 4000');
 });
 // Users route
-app.use('/api/v1/users', UserRoutes);
+app.use(`${baseUrl}/users`, UserRoutes);
 // UserHistory Route
-app.use('/api/v1/user_history', userHistoryRoutes);
+app.use(`${baseUrl}/user_history`, userHistoryRoutes);
 // Token route
-app.use('/api/v1/token', tokenRoutes);
+app.use(`${baseUrl}/token`, tokenRoutes);
 // Disease Route
-app.use('/api/v1/disease', diseaseRoutes);
-// Disease Route
-app.use('/api/v1/symptom', symptomRoutes);
+app.use(`${baseUrl}/disease`, diseaseRoutes);
+// Symptom Route
+app.use(`${baseUrl}/symptom`, symptomRoutes);
+// ClientUser Route
+app.use(`${baseUrl}/client`, clientUserRoutes);
+// Stats Route
+app.use(`${baseUrl}/stats`, statsRoutes);
