@@ -10,6 +10,10 @@ Token.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
+      primaryKey: true,
+    },
+    date: {
+      type: DataTypes.DATE,
     },
   },
   {
