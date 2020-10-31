@@ -7,7 +7,7 @@ Diseases.init(
   {
     // Model attributes are defined here
     diseaseName: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },

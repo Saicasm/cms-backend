@@ -41,6 +41,16 @@ const constants = {
     TOKENS_RETRIEVED: 'tokens retrieved',
     TOKEN_FOUND: 'token found',
   },
+  diseaseTypes: {
+    DISEASE_UPDATED: 'Disease updated',
+    NO_DISEASES: 'No diseases found',
+    DISEASE_ADDED: 'Disease added',
+    DISEASE_DELETED: 'Disease deleted',
+    DISEASE_FOUND: 'Disease found',
+    DISEASE_FOUND_WITH_ID: 'Disease found with id :',
+    DISEASE_NOT_FOUND_WITH_ID: 'Disease not found with id : ',
+    DISEASES_RETRIEVED: 'Diseases retrieved',
+  },
   dbConnectionTypes: {
     CONNECTION_SUCCESS: 'Connection has been established successfully',
     CONNECTION_FAILURE: 'An error has occurred in establishing connection',

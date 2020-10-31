@@ -6,22 +6,22 @@ class UserHistory extends Model {}
 UserHistory.init(
   {
     diseases: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     symptoms: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     prescriptions: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
     date: {
       type: DataTypes.DATE,
     },
     comments: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     advice: {
       type: DataTypes.TEXT,

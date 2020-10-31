@@ -6,8 +6,8 @@ class Symptoms extends Model {}
 Symptoms.init(
   {
     // Model attributes are defined here
-    diseaseName: {
-      type: DataTypes.INTEGER,
+    symptom: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
