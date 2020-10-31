@@ -1,4 +1,5 @@
 const {DataTypes, Model} = require('sequelize');
+// const constants = require('../../utils/constants');
 const sequelize = require('../config/config');
 
 class User extends Model {}
@@ -26,6 +27,11 @@ User.init(
       type: DataTypes.STRING,
     },
     type: {
+      // type: DataTypes.ENUM(
+      //   constants.userTypes.USER_CHILD,
+      //   constants.userTypes.USER_PARENT,
+      //   constants.userTypes.USER_OTHER,
+      // ),
       type: DataTypes.STRING,
     },
   },
