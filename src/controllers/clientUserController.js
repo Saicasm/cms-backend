@@ -1,21 +1,21 @@
-const SymptomService = require('../services/symptomService');
+const ClientUserService = require('../services/clientUserService');
 const constants = require('../utils/constants');
 const Util = require('../utils/utils');
 
 const util = new Util();
 
-class SymptomController {
-  static async getAllSymptoms(req, res) {
+class ClientUserController {
+  static async getAllClientUsers(req, res) {
     try {
-      const allSymptoms = await SymptomService.getAllSymptoms();
-      if (allSymptoms.length > 0) {
+      const allClientUsers = await ClientUserService.getAllClientUsers();
+      if (allClientUsers.length > 0) {
         util.setSuccess(
           200,
-          constants.symptomTypes.SYMPTOMS_RETRIEVED,
-          allSymptoms,
+          constants.clientUserTypes.CLIENT_USERS_RETRIEVED,
+          allClientUsers,
         );
       } else {
-        util.setSuccess(200, constants.symptomTypes.NO_SYMPTOMS);
+        util.setSuccess(200, constants.clientUserTypes.NO_CLIENT_USERS);
       }
       return util.send(res);
     } catch (error) {
@@ -24,18 +24,20 @@ class SymptomController {
     }
   }
 
-  static async addSymptom(req, res) {
-    if (!req.body.symptom) {
+  static async addClientUser(req, res) {
+    if (!req.body.name) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
       return util.send(res);
     }
-    const newSymptom = req.body;
+    const newClientUser = req.body;
     try {
-      const createdSymptom = await SymptomService.addSymptom(newSymptom);
+      const createdClientUser = await ClientUserService.addClientUser(
+        newClientUser,
+      );
       util.setSuccess(
         201,
-        constants.symptomTypes.SYMPTOM_ADDED,
-        createdSymptom,
+        constants.clientUserTypes.CLIENT_USER_ADDED,
+        createdClientUser,
       );
       return util.send(res);
     } catch (error) {
@@ -44,28 +46,28 @@ class SymptomController {
     }
   }
 
-  static async updateSymptom(req, res) {
-    const alteredSymptom = req.body;
+  static async updateClientUser(req, res) {
+    const alteredClientUser = req.body;
     const {id} = req.params;
     if (!Number(id)) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
       return util.send(res);
     }
     try {
-      const updateSymptom = await SymptomService.updateSymptom(
+      const updateClientUser = await ClientUserService.updateClientUser(
         id,
-        alteredSymptom,
+        alteredClientUser,
       );
-      if (!updateSymptom) {
+      if (!updateClientUser) {
         util.setError(
           404,
-          constants.symptomTypes.SYMPTOM_NOT_FOUND_WITH_ID + id,
+          constants.clientUserTypes.CLIENT_USER_NOT_FOUND_WITH_ID + id,
         );
       } else {
         util.setSuccess(
           200,
-          constants.symptomTypes.SYMPTOM_UPDATED,
-          updateSymptom,
+          constants.clientUserTypes.CLIENT_USER_UPDATED,
+          updateClientUser,
         );
       }
       return util.send(res);
@@ -75,7 +77,7 @@ class SymptomController {
     }
   }
 
-  static async getSymptom(req, res) {
+  static async getClientUser(req, res) {
     const {id} = req.params;
 
     if (!Number(id)) {
@@ -84,15 +86,19 @@ class SymptomController {
     }
 
     try {
-      const symptom = await SymptomService.getSymptom(id);
+      const clientUser = await ClientUserService.getClientUser(id);
 
-      if (!symptom) {
+      if (!clientUser) {
         util.setError(
           404,
-          constants.symptomTypes.SYMPTOM_NOT_FOUND_WITH_ID + id,
+          constants.clientUserTypes.CLIENT_USER_NOT_FOUND_WITH_ID + id,
         );
       } else {
-        util.setSuccess(200, constants.symptomTypes.SYMPTOM_FOUND, symptom);
+        util.setSuccess(
+          200,
+          constants.clientUserTypes.CLIENT_USER_FOUND,
+          clientUser,
+        );
       }
       return util.send(res);
     } catch (error) {
@@ -101,7 +107,7 @@ class SymptomController {
     }
   }
 
-  static async deleteSymptom(req, res) {
+  static async deleteClientUser(req, res) {
     const {id} = req.params;
 
     if (!Number(id)) {
@@ -110,14 +116,14 @@ class SymptomController {
     }
 
     try {
-      const symptomToDelete = await SymptomService.deleteSymptom(id);
+      const clientUserToDelete = await ClientUserService.deleteClientUser(id);
 
-      if (symptomToDelete) {
-        util.setSuccess(200, constants.symptomTypes.SYMPTOM_DELETED);
+      if (clientUserToDelete) {
+        util.setSuccess(200, constants.clientUserTypes.CLIENT_USER_DELETED);
       } else {
         util.setError(
           404,
-          constants.symptomTypes.SYMPTOM_NOT_FOUND_WITH_ID + id,
+          constants.clientUserTypes.CLIENT_USER_NOT_FOUND_WITH_ID + id,
         );
       }
       return util.send(res);
@@ -128,4 +134,4 @@ class SymptomController {
   }
 }
 
-module.exports = SymptomController;
+module.exports = ClientUserController;

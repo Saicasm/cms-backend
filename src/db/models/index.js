@@ -3,7 +3,7 @@ const UserHistory = require('./user-history');
 const Token = require('./token');
 const Symptoms = require('./symptoms');
 const Diseases = require('./diseases');
-const Client = require('./client');
+const ClientUsers = require('./client');
 const Stats = require('./statistics');
 
 const Models = {
@@ -12,7 +12,7 @@ const Models = {
   Token,
   Symptoms,
   Diseases,
-  Client,
+  ClientUsers,
   Stats,
 };
 
