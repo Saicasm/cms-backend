@@ -6,6 +6,7 @@ const UserRoutes = require('./routes/userRoutes');
 const userHistoryRoutes = require('./routes/userHistoryRoutes');
 const tokenRoutes = require('./routes/tokenRoutes');
 const diseaseRoutes = require('./routes/diseaseRoutes');
+const symptomRoutes = require('./routes/symptomRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -24,3 +25,5 @@ app.use('/api/v1/user_history', userHistoryRoutes);
 app.use('/api/v1/token', tokenRoutes);
 // Disease Route
 app.use('/api/v1/disease', diseaseRoutes);
+// Disease Route
+app.use('/api/v1/symptom', symptomRoutes);

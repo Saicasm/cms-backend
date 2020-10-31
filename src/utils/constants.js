@@ -51,11 +51,25 @@ const constants = {
     DISEASE_NOT_FOUND_WITH_ID: 'Disease not found with id : ',
     DISEASES_RETRIEVED: 'Diseases retrieved',
   },
+  symptomTypes: {
+    SYMPTOM_UPDATED: 'Symptom updated',
+    NO_SYMPTOMS: 'No symptoms found',
+    SYMPTOM_ADDED: 'Symptom added',
+    SYMPTOM_DELETED: 'Symptom deleted',
+    SYMPTOM_FOUND: 'Symptom found',
+    SYMPTOM_FOUND_WITH_ID: 'Symptom found with id :',
+    SYMPTOM_NOT_FOUND_WITH_ID: 'Symptom not found with id : ',
+    SYMPTOMS_RETRIEVED: 'Symptoms retrieved',
+  },
   dbConnectionTypes: {
     CONNECTION_SUCCESS: 'Connection has been established successfully',
     CONNECTION_FAILURE: 'An error has occurred in establishing connection',
     DB_DEV_HOST: 'localhost',
     DB_DEV_DATABASE: 'cms_dev',
+  },
+  clientTypes: {
+    CLIENT_DOCTOR: 'Doctor',
+    CLIENT_RECEPTIONIST: 'Receptionist',
   },
 };
 
