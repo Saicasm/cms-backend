@@ -27,5 +27,4 @@ sequelize
   .catch((err) => {
     logger.error(constants.dbConnectionTypes.CONNECTION_FAILURE, err);
   });
-
 module.exports = sequelize;

@@ -13,11 +13,11 @@ const constants = require('./utils/constants');
 require('dotenv').config();
 
 const app = express();
-const baseUrl = process.env.BASE_URL || constants.apiTypes.BASE_URL
+const baseUrl = process.env.BASE_URL || constants.apiTypes.BASE_URL;
 app.use(bodyParser.json());
 app.use(httpLogger);
 
-app.listen(4002, () => {
+app.listen(process.env.PORT || 4002, () => {
   logger.info('Running on port 4000');
 });
 // Users route
