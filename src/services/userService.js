@@ -40,14 +40,14 @@ class UserService {
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
           userToUpdate = await models.User.findOne({
-            where: { id: Number(id) },
+            where: {id: Number(id)},
           });
           break;
         case constants.dbType.DB_MONGO:
           break;
         default:
           userToUpdate = await models.User.findOne({
-            where: { id: Number(id) },
+            where: {id: Number(id)},
           });
       }
 
@@ -55,7 +55,7 @@ class UserService {
         switch (dbType) {
           case constants.dbType.DB_POSTGRES:
             await models.User.update(updateUser, {
-              where: { id: Number(id) },
+              where: {id: Number(id)},
             });
 
             return updateUser;
@@ -63,7 +63,7 @@ class UserService {
             break;
           default:
             await models.User.update(updateUser, {
-              where: { id: Number(id) },
+              where: {id: Number(id)},
             });
 
             return updateUser;
@@ -81,7 +81,7 @@ class UserService {
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
           user = await models.User.findOne({
-            where: { id: Number(id) },
+            where: {id: Number(id)},
           });
           logger.debug(user);
           return user;
@@ -89,7 +89,7 @@ class UserService {
           break;
         default:
           user = await models.User.findOne({
-            where: { id: Number(id) },
+            where: {id: Number(id)},
           });
 
           return user;
@@ -104,12 +104,12 @@ class UserService {
       let userId;
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
-          userId = await models.User.findOne({ where: { id: Number(id) } });
+          userId = await models.User.findOne({where: {id: Number(id)}});
           break;
         case constants.dbType.DB_MONGO:
           break;
         default:
-          userId = await models.User.findOne({ where: { id: Number(id) } });
+          userId = await models.User.findOne({where: {id: Number(id)}});
       }
 
       if (userId) {
@@ -117,14 +117,14 @@ class UserService {
         switch (dbType) {
           case constants.dbType.DB_POSTGRES:
             deletedUser = await models.User.destroy({
-              where: { id: Number(id) },
+              where: {id: Number(id)},
             });
             return deletedUser;
           case constants.dbType.DB_MONGO:
             break;
           default:
             deletedUser = await models.User.destroy({
-              where: { id: Number(id) },
+              where: {id: Number(id)},
             });
             return deletedUser;
         }
@@ -141,14 +141,14 @@ class UserService {
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
           user = await models.User.findAll({
-            where: { phoneNo: Number(phNo) },
+            where: {phoneNo: Number(phNo)},
           });
           return user;
         case constants.dbType.DB_MONGO:
           break;
         default:
           user = await models.User.findOne({
-            where: { phoneNo: Number(phNo) },
+            where: {phoneNo: Number(phNo)},
           });
 
           return user;
@@ -164,14 +164,14 @@ class UserService {
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
           user = await models.User.findOne({
-            where: { phoneNo: Number(phNo), name },
+            where: {phoneNo: Number(phNo), name},
           });
           return user;
         case constants.dbType.DB_MONGO:
           break;
         default:
           user = await models.User.findOne({
-            where: { phoneNo: Number(phNo) },
+            where: {phoneNo: Number(phNo)},
           });
 
           return user;

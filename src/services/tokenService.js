@@ -9,13 +9,13 @@ class TokenService {
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
           return await models.Token.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            attributes: {exclude: ['createdAt', 'updatedAt']},
           });
         case constants.dbType.DB_MONGO:
           break;
         default:
           return await models.Token.findAll({
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            attributes: {exclude: ['createdAt', 'updatedAt']},
           });
       }
     } catch (error) {
@@ -44,14 +44,14 @@ class TokenService {
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
           tokenToUpdate = await models.Token.findOne({
-            where: { id: Number(id) },
+            where: {id: Number(id)},
           });
           break;
         case constants.dbType.DB_MONGO:
           break;
         default:
           tokenToUpdate = await models.Token.findOne({
-            where: { id: Number(id) },
+            where: {id: Number(id)},
           });
       }
 
@@ -59,8 +59,8 @@ class TokenService {
         switch (dbType) {
           case constants.dbType.DB_POSTGRES:
             await models.Token.update(updateToken, {
-              where: { id: Number(id) },
-              attributes: { exclude: ['createdAt', 'updatedAt'] },
+              where: {id: Number(id)},
+              attributes: {exclude: ['createdAt', 'updatedAt']},
             });
 
             return updateToken;
@@ -68,8 +68,8 @@ class TokenService {
             break;
           default:
             await models.Token.update(updateToken, {
-              where: { id: Number(id) },
-              attributes: { exclude: ['createdAt', 'updatedAt'] },
+              where: {id: Number(id)},
+              attributes: {exclude: ['createdAt', 'updatedAt']},
             });
 
             return updateToken;
@@ -87,8 +87,8 @@ class TokenService {
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
           token = await models.Token.findOne({
-            where: { tokenNo: Number(id) },
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            where: {tokenNo: Number(id)},
+            attributes: {exclude: ['createdAt', 'updatedAt']},
           });
           logger.debug(token);
           return token;
@@ -96,8 +96,8 @@ class TokenService {
           break;
         default:
           token = await models.Token.findOne({
-            where: { id: Number(id) },
-            attributes: { exclude: ['createdAt', 'updatedAt'] },
+            where: {id: Number(id)},
+            attributes: {exclude: ['createdAt', 'updatedAt']},
           });
 
           return token;
@@ -112,12 +112,12 @@ class TokenService {
       let tokenId;
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
-          tokenId = await models.Token.findOne({ where: { id: Number(id) } });
+          tokenId = await models.Token.findOne({where: {id: Number(id)}});
           break;
         case constants.dbType.DB_MONGO:
           break;
         default:
-          tokenId = await models.Token.findOne({ where: { id: Number(id) } });
+          tokenId = await models.Token.findOne({where: {id: Number(id)}});
       }
 
       if (tokenId) {
@@ -125,14 +125,14 @@ class TokenService {
         switch (dbType) {
           case constants.dbType.DB_POSTGRES:
             deletedToken = await models.Token.destroy({
-              where: { id: Number(id) },
+              where: {id: Number(id)},
             });
             return deletedToken;
           case constants.dbType.DB_MONGO:
             break;
           default:
             deletedToken = await models.Token.destroy({
-              where: { id: Number(id) },
+              where: {id: Number(id)},
             });
             return deletedToken;
         }

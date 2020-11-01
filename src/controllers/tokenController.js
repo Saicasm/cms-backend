@@ -39,7 +39,7 @@ class TokenController {
 
   static async updateToken(req, res) {
     const alteredToken = req.body;
-    const { id } = req.params;
+    const {id} = req.params;
     if (!Number(id)) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
       return util.send(res);
@@ -94,7 +94,7 @@ class TokenController {
   }
 
   static async deleteToken(req, res) {
-    const { id } = req.params;
+    const {id} = req.params;
 
     if (!Number(id)) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
