@@ -140,7 +140,7 @@ class UserService {
       let user;
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
-          user = await models.User.findOne({
+          user = await models.User.findAll({
             where: {phoneNo: Number(phNo)},
           });
           return user;

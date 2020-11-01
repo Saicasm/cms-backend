@@ -1,7 +1,8 @@
 const TokenService = require('../services/tokenService');
 const constants = require('../utils/constants');
 const Util = require('../utils/utils');
-
+const UserService = require('../services/userService');
+const logger = require('../utils/logger');
 const util = new Util();
 
 class TokenController {
@@ -62,20 +63,28 @@ class TokenController {
   }
 
   static async getToken(req, res) {
-    const {id} = req.params;
-
-    if (!Number(id)) {
+    const tokenId = req.query.tokenId;
+    console.log('naveen');
+    console.log(req.query);
+    if (!Number(tokenId)) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
       return util.send(res);
     }
 
     try {
-      const token = await TokenService.getToken(id);
+      const token = await TokenService.getToken(tokenId);
+      console.log(token);
+      const user = await UserService.getUser(token.dataValues.userId);
 
+      const result = {
+        ...token,
+        ...user,
+      };
+      console.log(result);
       if (!token) {
         util.setError(404, constants.tokenTypes.TOKEN_NOT_FOUND_WITH_ID + id);
       } else {
-        util.setSuccess(200, constants.tokenTypes.TOKEN_FOUND, token);
+        util.setSuccess(200, constants.tokenTypes.TOKEN_FOUND, result);
       }
       return util.send(res);
     } catch (error) {

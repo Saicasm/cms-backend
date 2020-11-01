@@ -87,7 +87,7 @@ class TokenService {
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
           token = await models.Token.findOne({
-            where: {id: Number(id)},
+            where: {tokenNo: Number(id)},
             attributes: {exclude: ['createdAt', 'updatedAt']},
           });
           logger.debug(token);
