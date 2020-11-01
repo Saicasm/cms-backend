@@ -39,7 +39,7 @@ class UserController {
 
   static async updateUser(req, res) {
     const alteredUser = req.body;
-    const {id} = req.params;
+    const { id } = req.params;
     if (!Number(id)) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
       return util.send(res);
@@ -59,8 +59,8 @@ class UserController {
   }
 
   static async getUser(req, res) {
-    const {id} = req.params;
-    const {phoneNo, name} = req.query;
+    const { id } = req.params;
+    const { phoneNo, name } = req.query;
     if (phoneNo) {
       if (!Number(phoneNo)) {
         util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
@@ -123,7 +123,7 @@ class UserController {
   }
 
   static async deleteUser(req, res) {
-    const {id} = req.params;
+    const { id } = req.params;
 
     if (!Number(id)) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);

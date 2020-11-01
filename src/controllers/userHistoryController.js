@@ -1,5 +1,6 @@
 const UserHistoryService = require('../services/userHistoryService');
 const constants = require('../utils/constants');
+const logger = require('../utils/logger');
 // const logger = require('../utils/logger');
 const Util = require('../utils/utils');
 
@@ -30,11 +31,12 @@ class UserHistoryController {
   }
 
   static async addUserHistory(req, res) {
-    if (!req.body.diseases || !req.body.symptoms || !req.body.prescriptions) {
-      util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
-      return util.send(res);
-    }
+    // if (!req.body.diseases || !req.body.symptoms || !req.body.prescriptions) {
+    //   util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
+    //   return util.send(res);
+    // }
     const newUserHistory = req.body;
+    console.log(req.body);
     try {
       const createdUserHistory = await UserHistoryService.addUserHistory(
         newUserHistory,
