@@ -3,6 +3,11 @@ const constants = require('../../utils/constants');
 const logger = require('../../utils/logger');
 require('dotenv').config();
 
+const Op = Sequelize.Op;
+const operatorsAliases = {
+  $like: Op.like,
+  $not: Op.not,
+};
 const {DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST} = process.env;
 const seqDB = DB_NAME || constants.dbConnectionTypes.DB_DEV_DATABASE;
 const seqHost = DB_HOST || constants.dbConnectionTypes.DB_DEV_HOST;
@@ -14,6 +19,7 @@ const sequelize = new Sequelize(seqDB, DB_USERNAME, DB_PASSWORD, {
     min: 0,
     idle: 10000,
   },
+  operatorsAliases,
 });
 
 // This is used to check connection

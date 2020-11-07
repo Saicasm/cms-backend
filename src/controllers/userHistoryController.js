@@ -31,10 +31,10 @@ class UserHistoryController {
   }
 
   static async addUserHistory(req, res) {
-    // if (!req.body.diseases || !req.body.symptoms || !req.body.prescriptions) {
-    //   util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
-    //   return util.send(res);
-    // }
+    if (!req.body.diseases || !req.body.symptoms || !req.body.prescriptions) {
+      util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
+      return util.send(res);
+    }
     const newUserHistory = req.body;
     console.log(req.body);
     try {

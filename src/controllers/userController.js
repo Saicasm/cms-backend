@@ -58,6 +58,51 @@ class UserController {
     }
   }
 
+  static async getUserDetailsByPhoneNoOrName(req, res) {
+    const {phoneNo, name} = req.query;
+    console.log(phoneNo);
+    console.log(name);
+    if (phoneNo) {
+      console.log(phoneNo);
+      const phoneNumber = String(phoneNo) + '%';
+      console.log(phoneNumber);
+      try {
+        console.log(typeof phoneNumber);
+        const user = await UserService.getUserByPhoneNo(phoneNumber);
+        console.log(user);
+        if (!user) {
+          util.setError(
+            404,
+            constants.userTypes.USER_WITH_PHONE_NOT_FOUND + phoneNo,
+          );
+        } else {
+          util.setSuccess(200, constants.userTypes.USER_WITH_PHONE_FOUND, user);
+        }
+        return util.send(res);
+      } catch (error) {
+        util.setError(404, error);
+        return util.send(res);
+      }
+    } else {
+      console.log(phoneNo);
+      try {
+        const user = await UserService.getUserByName(name);
+        console.log(user);
+        if (!user) {
+          util.setError(
+            404,
+            constants.userTypes.USER_WITH_NAME_NOT_FOUND + name,
+          );
+        } else {
+          util.setSuccess(200, constants.userTypes.USER_WITH_NAME_FOUND, user);
+        }
+        return util.send(res);
+      } catch (error) {
+        util.setError(404, error);
+        return util.send(res);
+      }
+    }
+  }
   static async getUser(req, res) {
     const {id} = req.params;
     const {phoneNo, name} = req.query;
