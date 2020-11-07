@@ -18,6 +18,8 @@ const constants = {
     USER_FOUND: 'User found',
     USER_WITH_PHONE_NOT_FOUND: 'User not found with phoneNo :',
     USER_WITH_PHONE_FOUND: 'User found with phoneNo :',
+    USER_WITH_NAME_NOT_FOUND: 'User NOT found with name :',
+    USER_WITH_NAME_FOUND: 'User found with name :',
     USER_PARENT: 'Parent',
     USER_CHILD: 'Child',
     USER_OTHER: 'Other',

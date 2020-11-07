@@ -10,10 +10,14 @@ Token.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: true,
+      autoIncrement: true,
       primaryKey: true,
     },
     date: {
       type: DataTypes.DATE,
+    },
+    drAssigned: {
+      type: DataTypes.STRING,
     },
   },
   {

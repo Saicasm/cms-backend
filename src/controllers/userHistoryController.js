@@ -1,5 +1,6 @@
 const UserHistoryService = require('../services/userHistoryService');
 const constants = require('../utils/constants');
+const logger = require('../utils/logger');
 // const logger = require('../utils/logger');
 const Util = require('../utils/utils');
 
@@ -35,6 +36,7 @@ class UserHistoryController {
       return util.send(res);
     }
     const newUserHistory = req.body;
+    console.log(req.body);
     try {
       const createdUserHistory = await UserHistoryService.addUserHistory(
         newUserHistory,

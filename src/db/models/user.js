@@ -12,7 +12,7 @@ User.init(
       allowNull: false,
     },
     phoneNo: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       // primaryKey: true,
     },

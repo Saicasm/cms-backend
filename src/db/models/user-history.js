@@ -21,10 +21,10 @@ UserHistory.init(
       type: DataTypes.DATE,
     },
     comments: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.TEXT,
     },
     advice: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
     tokenId: {
       type: DataTypes.STRING,
