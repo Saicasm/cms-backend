@@ -1,8 +1,10 @@
 const TokenService = require('../services/tokenService');
+const UserService = require('../services/userService');
 const constants = require('../utils/constants');
 const Util = require('../utils/utils');
-const UserService = require('../services/userService');
 const logger = require('../utils/logger');
+const {User} = require('../db/models');
+const {create} = require('../db/models/user');
 const util = new Util();
 
 class TokenController {
@@ -22,18 +24,48 @@ class TokenController {
   }
 
   static async addToken(req, res) {
-    if (!req.body.tokenNo) {
-      util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
-      return util.send(res);
-    }
+    // if (!req.body.tokenNo) {
+    //   util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
+    //   return util.send(res);
+    // }
     const newToken = req.body;
-    try {
-      const createdToken = await TokenService.addToken(newToken);
-      util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);
-      return util.send(res);
-    } catch (error) {
-      util.setError(400, error.message);
-      return util.send(res);
+    const {userId, drAssigned, createdAt} = req.body;
+    if (userId) {
+      const data = {
+        userId: userId,
+        drAssigned: drAssigned,
+      };
+      try {
+        console.log(data);
+        const createdToken = await TokenService.addToken(data);
+        util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);
+        return util.send(res);
+      } catch (error) {
+        util.setError(400, error.message);
+        return util.send(res);
+      }
+    } else {
+      try {
+        const createUser = await UserService.addUser(req.body);
+        console.log(createUser);
+        const userData = createUser.dataValues;
+        try {
+          const data = {
+            userId: userData.id,
+            createdAt: createdAt,
+            drAssigned: drAssigned,
+          };
+          const createdToken = await TokenService.addToken(data);
+          util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);
+          return util.send(res);
+        } catch (error) {
+          util.setError(400, error.message);
+          return util.send(res);
+        }
+      } catch (error) {
+        util.setError(400, error.message);
+        return util.send(res);
+      }
     }
   }
 
