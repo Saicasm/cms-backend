@@ -29,14 +29,14 @@ class TokenController {
     //   return util.send(res);
     // }
     const newToken = req.body;
-    const {userId, drAssigned, createdAt} = req.body;
+    const {userId, drAssigned, status} = req.body;
     if (userId) {
       const data = {
         userId: userId,
         drAssigned: drAssigned,
+        status: status,
       };
       try {
-        console.log(data);
         const createdToken = await TokenService.addToken(data);
         util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);
         return util.send(res);
@@ -54,6 +54,7 @@ class TokenController {
             userId: userData.id,
             createdAt: createdAt,
             drAssigned: drAssigned,
+            status: status,
           };
           const createdToken = await TokenService.addToken(data);
           util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);

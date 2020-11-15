@@ -13,10 +13,10 @@ Token.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    date: {
-      type: DataTypes.DATE,
-    },
     drAssigned: {
+      type: DataTypes.STRING,
+    },
+    status: {
       type: DataTypes.STRING,
     },
   },

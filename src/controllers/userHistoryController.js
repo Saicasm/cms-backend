@@ -37,6 +37,8 @@ class UserHistoryController {
     }
     const newUserHistory = req.body;
     console.log(req.body);
+    const {status, userId, tokenId} = req.body;
+    console.log(status + userId + tokenId);
     try {
       const createdUserHistory = await UserHistoryService.addUserHistory(
         newUserHistory,
