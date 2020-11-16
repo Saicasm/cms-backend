@@ -113,7 +113,12 @@ class UserHistoryService {
             where: {userId: Number(userId)},
             limit,
             offset,
+            order: [['id', 'DESC']],
             attributes: {exclude: ['createdAt', 'updatedAt']},
+            include: {
+              model: models.User,
+              attributes: ['name'],
+            },
           });
           logger.debug(UserHistoryForUserId);
           return UserHistoryForUserId;
