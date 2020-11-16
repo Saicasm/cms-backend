@@ -32,11 +32,7 @@ class AdviceController {
     const newAdvice = req.body;
     try {
       const createdAdvice = await AdviceService.addAdvice(newAdvice);
-      util.setSuccess(
-        201,
-        constants.adviceTypes.ADVICE_ADDED,
-        createdAdvice,
-      );
+      util.setSuccess(201, constants.adviceTypes.ADVICE_ADDED, createdAdvice);
       return util.send(res);
     } catch (error) {
       util.setError(400, error.message);
@@ -52,15 +48,9 @@ class AdviceController {
       return util.send(res);
     }
     try {
-      const updateAdvice = await AdviceService.updateAdvice(
-        id,
-        alteredAdvice,
-      );
+      const updateAdvice = await AdviceService.updateAdvice(id, alteredAdvice);
       if (!updateAdvice) {
-        util.setError(
-          404,
-          constants.adviceTypes.ADVICE + id,
-        );
+        util.setError(404, constants.adviceTypes.ADVICE + id);
       } else {
         util.setSuccess(
           200,
@@ -87,10 +77,7 @@ class AdviceController {
       const Advice = await AdviceService.getAdvice(id);
 
       if (!Advice) {
-        util.setError(
-          404,
-          constants.adviceTypes.ADVICE_NOT_FOUND_WITH_ID + id,
-        );
+        util.setError(404, constants.adviceTypes.ADVICE_NOT_FOUND_WITH_ID + id);
       } else {
         util.setSuccess(200, constants.adviceTypes.ADVICE_FOUND, Advice);
       }
@@ -115,10 +102,7 @@ class AdviceController {
       if (AdviceToDelete) {
         util.setSuccess(200, constants.adviceTypes.ADVICE_DELETED);
       } else {
-        util.setError(
-          404,
-          constants.adviceTypes.Advice_NOT_FOUND_WITH_ID + id,
-        );
+        util.setError(404, constants.adviceTypes.Advice_NOT_FOUND_WITH_ID + id);
       }
       return util.send(res);
     } catch (error) {

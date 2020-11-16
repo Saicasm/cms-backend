@@ -17,7 +17,7 @@ const Models = {
   ClientUsers,
   Stats,
   Advices,
-  Medicines
+  Medicines,
 };
 
 // Associations

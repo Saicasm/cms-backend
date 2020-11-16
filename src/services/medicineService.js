@@ -104,12 +104,16 @@ class MedicineService {
       let MedicineId;
       switch (dbType) {
         case constants.dbType.DB_POSTGRES:
-          MedicineId = await models.Medicines.findOne({where: {id: Number(id)}});
+          MedicineId = await models.Medicines.findOne({
+            where: {id: Number(id)},
+          });
           break;
         case constants.dbType.DB_MONGO:
           break;
         default:
-          MedicineId = await models.Medicines.findOne({where: {id: Number(id)}});
+          MedicineId = await models.Medicines.findOne({
+            where: {id: Number(id)},
+          });
       }
 
       if (MedicineId) {
