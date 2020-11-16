@@ -113,7 +113,7 @@ class TokenController {
         ...token.dataValues,
         ...user,
       };
-      console.log("hello")
+      console.log('hello');
       console.log(result);
       if (!token) {
         util.setError(404, constants.tokenTypes.TOKEN_NOT_FOUND_WITH_ID + id);

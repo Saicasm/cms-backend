@@ -45,7 +45,7 @@ class UserHistoryController {
         newUserHistory,
       );
       const token = await TokenService.updateTokenStatus(tokenId);
-      console.log(token)
+      console.log(token);
       util.setSuccess(
         201,
         constants.userHistoryTypes.USER_HISTORY_ADDED,
