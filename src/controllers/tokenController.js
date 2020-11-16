@@ -49,10 +49,12 @@ class TokenController {
     const {userId, drAssigned, date, status} = req.body;
     if (userId) {
       const data = {
+
         userId,
         drAssigned,
         date,
-        status,
+        status: 'WAITING',
+
       };
       try {
         const createdToken = await TokenService.addToken(data);
@@ -69,9 +71,13 @@ class TokenController {
         try {
           const data = {
             userId: userData.id,
+
             date,
-            status,
+      
             drAssigned,
+
+            status: 'WAITING',
+
           };
           const createdToken = await TokenService.addToken(data);
           util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);
@@ -125,9 +131,10 @@ class TokenController {
       const user = await UserService.getUser(token.dataValues.userId);
 
       const result = {
-        ...token,
+        ...token.dataValues,
         ...user,
       };
+
       if (!token) {
         util.setError(
           404,

@@ -3,6 +3,7 @@ const constants = require('../utils/constants');
 const logger = require('../utils/logger');
 // const logger = require('../utils/logger');
 const Util = require('../utils/utils');
+const TokenService = require('../services/tokenService');
 
 const util = new Util();
 
@@ -31,16 +32,20 @@ class UserHistoryController {
   }
 
   static async addUserHistory(req, res) {
-    if (!req.body.diseases || !req.body.symptoms || !req.body.prescriptions) {
-      util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
-      return util.send(res);
-    }
+    // if (!req.body.diseases || !req.body.symptoms || !req.body.prescriptions) {
+    //   util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
+    //   return util.send(res);
+    // }
     const newUserHistory = req.body;
     console.log(req.body);
+    const {status, userId, tokenId} = req.body;
+    console.log(status + userId + tokenId);
     try {
       const createdUserHistory = await UserHistoryService.addUserHistory(
         newUserHistory,
       );
+      const token = await TokenService.updateTokenStatus(tokenId);
+      console.log(token);
       util.setSuccess(
         201,
         constants.userHistoryTypes.USER_HISTORY_ADDED,
