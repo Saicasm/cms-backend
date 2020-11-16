@@ -8,5 +8,5 @@ router.post('/', DiseaseController.addDisease);
 router.get('/:id', DiseaseController.getDisease);
 router.put('/:id', DiseaseController.updateDisease);
 router.delete('/:id', DiseaseController.deleteDisease);
-
+router.get('/search/:searchKey', DiseaseController.getMatchedDiseases);
 module.exports = router;
