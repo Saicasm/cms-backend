@@ -27,7 +27,7 @@ sequelize
   .authenticate()
   .then(async () => {
     logger.info(constants.dbConnectionTypes.CONNECTION_SUCCESS);
-    await sequelize.sync({alter: true});
+    //await sequelize.sync({alter: true});
     logger.info('All models were synchronized successfully.');
   })
   .catch((err) => {

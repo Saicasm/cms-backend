@@ -29,12 +29,12 @@ class TokenController {
     //   return util.send(res);
     // }
     const newToken = req.body;
-    const {userId, drAssigned, status} = req.body;
+    const {userId, drAssigned, createdAt} = req.body;
     if (userId) {
       const data = {
         userId: userId,
         drAssigned: drAssigned,
-        status: status,
+        status: 'WAITING',
       };
       try {
         const createdToken = await TokenService.addToken(data);
@@ -54,7 +54,7 @@ class TokenController {
             userId: userData.id,
             createdAt: createdAt,
             drAssigned: drAssigned,
-            status: status,
+            status: 'WAITING',
           };
           const createdToken = await TokenService.addToken(data);
           util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);
@@ -110,9 +110,10 @@ class TokenController {
       const user = await UserService.getUser(token.dataValues.userId);
 
       const result = {
-        ...token,
+        ...token.dataValues,
         ...user,
       };
+      console.log("hello")
       console.log(result);
       if (!token) {
         util.setError(404, constants.tokenTypes.TOKEN_NOT_FOUND_WITH_ID + id);

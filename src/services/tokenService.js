@@ -142,6 +142,32 @@ class TokenService {
       throw error;
     }
   }
+
+  static async updateTokenStatus(tokenNo) {
+    try {
+      
+        switch (dbType) {
+          case constants.dbType.DB_POSTGRES:
+            await models.Token.update({status: 'DONE'}, {
+              where: {tokenNo: Number(tokenNo)},
+            });
+            return "SUCCESS";
+          case constants.dbType.DB_MONGO:
+            break;
+          default:
+            await models.Token.update(updateToken, {
+              where: {id: Number(id)},
+              attributes: {exclude: ['createdAt', 'updatedAt']},
+            });
+
+            return 'SUCCESS';
+        }
+      
+      return null;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = TokenService;
