@@ -3,15 +3,51 @@ const constants = require('../utils/constants');
 const Util = require('../utils/utils');
 
 const util = new Util();
-
+const statsTypes = constants.statTypes;
 class StatController {
   static async getAllStats(req, res) {
+    const {year, month, day, week} = req.query;
+
     try {
-      const allStats = await StatService.getAllStats();
-      if (allStats.length > 0) {
-        util.setSuccess(200, constants.statTypes.STATS_RETRIEVED, allStats);
+      let yearlyStats = await StatService.getAllStats(
+        statsTypes.STATS_YEAR,
+        year,
+      );
+      let monthlyStats = await StatService.getAllStats(
+        statsTypes.STATS_MONTH,
+        month,
+      );
+      let weeklyStats = await StatService.getAllStats(
+        statsTypes.STATS_WEEK,
+        week,
+      );
+      let dailyStats = await StatService.getAllStats(
+        statsTypes.STATS_DAILY,
+        day,
+      );
+      if (!monthlyStats) {
+        monthlyStats = 0;
+      }
+      if (!yearlyStats) {
+        yearlyStats = 0;
+      }
+      if (!weeklyStats) {
+        weeklyStats = 0;
+      }
+      if (!dailyStats) {
+        dailyStats = 0;
+      }
+      const stats = {
+        yearlyStats,
+        monthlyStats,
+        weeklyStats,
+        dailyStats,
+      };
+
+      if (stats) {
+        util.setSuccess(200, constants.statTypes.STATS_RETRIEVED, stats);
       } else {
-        util.setSuccess(200, constants.statTypes.NO_STATS);
+        util.setSuccess(200, constants.statTypes.NO_STATS, []);
       }
       return util.send(res);
     } catch (error) {
@@ -21,7 +57,7 @@ class StatController {
   }
 
   static async addStat(req, res) {
-    if (!req.body.tokens) {
+    if (!req.body.noOfTokens) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
       return util.send(res);
     }

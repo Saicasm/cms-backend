@@ -18,6 +18,7 @@ const Models = {
 
 // Associations
 Models.User.hasMany(UserHistory);
+Models.User.hasMany(Token);
 Models.Token.belongsTo(User);
 Models.UserHistory.belongsTo(User);
 module.exports = Models;

@@ -6,11 +6,12 @@ class Stats extends Model {}
 Stats.init(
   {
     // Model attributes are defined here
-    tokens: {
+    noOfTokens: {
       type: DataTypes.INTEGER,
     },
     date: {
       type: DataTypes.DATE,
+      unique: true,
     },
   },
   {

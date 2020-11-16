@@ -19,6 +19,9 @@ Token.init(
     drAssigned: {
       type: DataTypes.STRING,
     },
+    status: {
+      type: DataTypes.STRING,
+    },
   },
   {
     // Other model options go here

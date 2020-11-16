@@ -3,18 +3,35 @@ const UserService = require('../services/userService');
 const constants = require('../utils/constants');
 const Util = require('../utils/utils');
 const logger = require('../utils/logger');
-const {User} = require('../db/models');
-const {create} = require('../db/models/user');
+
 const util = new Util();
 
 class TokenController {
   static async getAllTokens(req, res) {
+    const {upComing, limit, offset, order} = req.query;
+    const {TOKEN_ACTIVE, TOKEN_DONE} = constants.tokenTypes;
     try {
-      const allTokens = await TokenService.getAllTokens();
+      let allTokens;
+      if (upComing) {
+        allTokens = await TokenService.getAllTokens(
+          limit,
+          offset,
+          order,
+          TOKEN_ACTIVE,
+        );
+      } else {
+        allTokens = await TokenService.getAllTokens(
+          limit,
+          offset,
+          order,
+          TOKEN_DONE,
+        );
+      }
+
       if (allTokens.length > 0) {
         util.setSuccess(200, constants.tokenTypes.TOKENS_RETRIEVED, allTokens);
       } else {
-        util.setSuccess(200, constants.tokenTypes.NO_TOKEN_FOUND);
+        util.setSuccess(200, constants.tokenTypes.NO_TOKEN_FOUND, []);
       }
       return util.send(res);
     } catch (error) {
@@ -28,32 +45,33 @@ class TokenController {
     //   util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
     //   return util.send(res);
     // }
-    const newToken = req.body;
-    const {userId, drAssigned, createdAt} = req.body;
+    logger.info('add token');
+    const {userId, drAssigned, date, status} = req.body;
     if (userId) {
       const data = {
-        userId: userId,
-        drAssigned: drAssigned,
+        userId,
+        drAssigned,
+        date,
+        status,
       };
       try {
-        console.log(data);
         const createdToken = await TokenService.addToken(data);
         util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);
         return util.send(res);
       } catch (error) {
-        util.setError(400, error.message);
+        util.setError(400, error);
         return util.send(res);
       }
     } else {
       try {
         const createUser = await UserService.addUser(req.body);
-        console.log(createUser);
         const userData = createUser.dataValues;
         try {
           const data = {
             userId: userData.id,
-            createdAt: createdAt,
-            drAssigned: drAssigned,
+            date,
+            status,
+            drAssigned,
           };
           const createdToken = await TokenService.addToken(data);
           util.setSuccess(201, constants.tokenTypes.TOKEN_ADDED, createdToken);
@@ -95,9 +113,8 @@ class TokenController {
   }
 
   static async getToken(req, res) {
-    const tokenId = req.query.tokenId;
-    console.log('naveen');
-    console.log(req.query);
+    const {tokenId} = req.query;
+
     if (!Number(tokenId)) {
       util.setError(400, constants.errorTypes.ERROR_INPUT_VALUE);
       return util.send(res);
@@ -105,16 +122,17 @@ class TokenController {
 
     try {
       const token = await TokenService.getToken(tokenId);
-      console.log(token);
       const user = await UserService.getUser(token.dataValues.userId);
 
       const result = {
         ...token,
         ...user,
       };
-      console.log(result);
       if (!token) {
-        util.setError(404, constants.tokenTypes.TOKEN_NOT_FOUND_WITH_ID + id);
+        util.setError(
+          404,
+          constants.tokenTypes.TOKEN_NOT_FOUND_WITH_ID + tokenId,
+        );
       } else {
         util.setSuccess(200, constants.tokenTypes.TOKEN_FOUND, result);
       }

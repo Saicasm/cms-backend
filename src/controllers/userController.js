@@ -64,7 +64,7 @@ class UserController {
     console.log(name);
     if (phoneNo) {
       console.log(phoneNo);
-      const phoneNumber = String(phoneNo) + '%';
+      const phoneNumber = `${String(phoneNo)}%`;
       console.log(phoneNumber);
       try {
         console.log(typeof phoneNumber);
@@ -103,6 +103,7 @@ class UserController {
       }
     }
   }
+
   static async getUser(req, res) {
     const {id} = req.params;
     const {phoneNo, name} = req.query;
