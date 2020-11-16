@@ -44,6 +44,30 @@ class DiseaseController {
     }
   }
 
+  static async getMatchedDiseases(req, res) {
+    const {searchKey} = req.params;
+    console.log(searchKey);
+    try {
+      const diseaseregex = searchKey + '%';
+      const searchResults = await DiseaseService.getMatchedDiseases(
+        diseaseregex,
+      );
+      if (searchResults.length > 0) {
+        util.setSuccess(
+          200,
+          constants.diseaseTypes.DISEASES_RETRIEVED,
+          searchResults,
+        );
+      } else {
+        util.setSuccess(200, constants.diseaseTypes.NO_DISEASES, []);
+      }
+      console.log(searchResults);
+      return util.send(res);
+    } catch (error) {
+      util.setError(404, error);
+      return util.send(res);
+    }
+  }
   static async updateDisease(req, res) {
     const alteredDisease = req.body;
     const {id} = req.params;

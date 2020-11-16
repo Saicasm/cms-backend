@@ -5,6 +5,8 @@ const Symptoms = require('./symptoms');
 const Diseases = require('./diseases');
 const ClientUsers = require('./client');
 const Stats = require('./statistics');
+const Advices = require('./advices');
+const Medicines = require('./medicines');
 
 const Models = {
   User,
@@ -14,6 +16,8 @@ const Models = {
   Diseases,
   ClientUsers,
   Stats,
+  Advices,
+  Medicines,
 };
 
 // Associations

@@ -1,6 +1,8 @@
 const models = require('../db/models/index');
 const constants = require('../utils/constants');
 const logger = require('../utils/logger');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const dbType = process.env.DB_TYPE || constants.dbType.DB_POSTGRES;
 class DiseaseService {
@@ -38,6 +40,27 @@ class DiseaseService {
     }
   }
 
+  static async getMatchedDiseases(searchKey) {
+    try {
+      switch (dbType) {
+        case constants.dbType.DB_POSTGRES:
+          const diseases = await models.Diseases.findAll({
+            where: {
+              disease: {
+                [Op.iLike]: searchKey,
+              },
+            },
+          });
+          return diseases;
+        case constants.dbType.DB_MONGO:
+          break;
+        default:
+          await models.Diseases.create(newDisease);
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
   static async updateDisease(id, updateDisease) {
     try {
       let diseaseToUpdate;
