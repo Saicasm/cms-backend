@@ -8,6 +8,7 @@ const {Op} = Sequelize;
 const operatorsAliases = {
   $like: Op.like,
   $not: Op.not,
+  $iLike: Op.iLike,
 };
 const {DB_NAME, DB_USERNAME, DB_PASSWORD, DB_HOST} = process.env;
 const seqDB = DB_NAME || constants.dbConnectionTypes.DB_DEV_DATABASE;

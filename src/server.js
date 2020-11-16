@@ -10,6 +10,8 @@ const diseaseRoutes = require('./routes/diseaseRoutes');
 const symptomRoutes = require('./routes/symptomRoutes');
 const clientUserRoutes = require('./routes/clientUserRoutes');
 const statsRoutes = require('./routes/statisticsRoutes');
+const medicineRoutes = require('./routes/medicineRoutes');
+const advieRoutes = require('./routes/adviceRoutes');
 const constants = require('./utils/constants');
 require('dotenv').config();
 
@@ -36,3 +38,7 @@ app.use(`${baseUrl}/symptom`, symptomRoutes);
 app.use(`${baseUrl}/client`, clientUserRoutes);
 // Stats Route
 app.use(`${baseUrl}/stats`, statsRoutes);
+// Medicine Routes
+app.use(`${baseUrl}/medicine`, medicineRoutes);
+// Advice Routes
+app.use(`${baseUrl}/advice`, advieRoutes);
