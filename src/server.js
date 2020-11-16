@@ -20,7 +20,7 @@ app.use(httpLogger);
 
 app.use(cors());
 app.listen(process.env.PORT || 4002, () => {
-  logger.info('Running on port 4000');
+  logger.info('Running on port 4002');
 });
 // Users route
 app.use(`${baseUrl}/user`, UserRoutes);

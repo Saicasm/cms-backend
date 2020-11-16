@@ -1,8 +1,9 @@
+const Sequelize = require('sequelize');
 const models = require('../db/models/index');
 const constants = require('../utils/constants');
 const logger = require('../utils/logger');
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+
+const {Op} = Sequelize;
 
 const dbType = process.env.DB_TYPE || constants.dbType.DB_POSTGRES;
 class UserService {
@@ -171,7 +172,7 @@ class UserService {
         case constants.dbType.DB_POSTGRES:
           console.log(user);
           user = await models.User.findAll({
-            where: {name: {like: name + '%'}},
+            where: {name: {like: `${name}%`}},
           });
           console.log(user);
           return user;
@@ -179,7 +180,7 @@ class UserService {
           break;
         default:
           user = await models.User.findAll({
-            where: {name: {$iLike: name + '%'}},
+            where: {name: {$iLike: `${name}%`}},
           });
 
           return user;
@@ -188,6 +189,7 @@ class UserService {
       throw error;
     }
   }
+
   static async getUserByPhoneNoAndName(phNo, name) {
     try {
       let user;

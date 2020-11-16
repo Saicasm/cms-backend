@@ -45,6 +45,8 @@ const constants = {
     TOKEN_NOT_FOUND_WITH_ID: 'token not found with id : ',
     TOKENS_RETRIEVED: 'tokens retrieved',
     TOKEN_FOUND: 'token found',
+    TOKEN_ACTIVE: 'active',
+    TOKEN_DONE: 'done',
   },
   diseaseTypes: {
     DISEASE_UPDATED: 'Disease updated',
@@ -93,6 +95,10 @@ const constants = {
     STAT_FOUND_WITH_ID: 'Stat found with id :',
     STAT_NOT_FOUND_WITH_ID: 'Stat not found with id : ',
     STATS_RETRIEVED: 'Stats retrieved',
+    STATS_YEAR: 'Year',
+    STATS_WEEK: 'Week',
+    STATS_DAILY: 'Daily',
+    STATS_MONTH: 'Month',
   },
   apiTypes: {
     BASE_URL: '/api/v1',

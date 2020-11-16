@@ -1,9 +1,10 @@
+/* eslint-disable import/no-unresolved */
 const Sequelize = require('sequelize');
 const constants = require('../../utils/constants');
 const logger = require('../../utils/logger');
 require('dotenv').config();
 
-const Op = Sequelize.Op;
+const {Op} = Sequelize;
 const operatorsAliases = {
   $like: Op.like,
   $not: Op.not,
